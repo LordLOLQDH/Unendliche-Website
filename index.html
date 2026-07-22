@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unendliche Seite</title>
+
+<style>
+    body {
+        margin: 0;
+        background: #111;
+        color: white;
+        font-family: Arial, sans-serif;
+    }
+
+    .block {
+        height: 500px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2em;
+        border-bottom: 1px solid #333;
+    }
+</style>
+</head>
+<body>
+
+<script>
+let nummer = 1;
+
+function neuerBlock() {
+    const div = document.createElement("div");
+    div.className = "block";
+
+    // Zufällige Hintergrundfarbe
+    div.style.background =
+        `hsl(${Math.random()*360},70%,35%)`;
+
+    div.textContent = "Block " + nummer++;
+    document.body.appendChild(div);
+}
+
+// Anfangsinhalt
+for(let i=0;i<20;i++){
+    neuerBlock();
+}
+
+// Immer wenn man fast unten ist,
+// werden neue Blöcke angefügt.
+window.addEventListener("scroll", () => {
+
+    if(window.innerHeight + window.scrollY >= document.body.offsetHeight - 1000){
+
+        for(let i=0;i<10;i++){
+            neuerBlock();
+        }
+
+    }
+
+});
+</script>
+
+</body>
+</html>
