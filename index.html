@@ -2,157 +2,29 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#101018">
-<title>ENDLOS PFERD — Du bist noch nicht fertig.</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unendliche Seite</title>
 <style>
-:root{--bg:#101018;--panel:#1a1a27;--ink:#f7f4ff;--muted:#aaa8bf;--hot:#ff4fa3;--lime:#d7ff62;--blue:#76e5ff}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow-x:hidden}
-button{font:inherit;cursor:pointer}
-.topbar{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px clamp(14px,4vw,42px);background:#101018eF;border-bottom:1px solid #ffffff18;backdrop-filter:blur(14px)}
-.brand{font-weight:1000;letter-spacing:-.05em}.brand span{color:var(--hot)}
-.pill{border:1px solid #ffffff2b;border-radius:999px;padding:8px 12px;background:#ffffff0b;color:var(--ink);font-size:13px}
-.hero{min-height:82vh;display:grid;place-items:center;text-align:center;padding:64px 18px 48px;position:relative;isolation:isolate;overflow:hidden;background:radial-gradient(ellipse at 50% 25%,#642b6b 0%,#25213c 35%,var(--bg) 75%)}
-.hero:before,.hero:after{content:"";position:absolute;width:280px;height:280px;border-radius:50%;filter:blur(65px);opacity:.3;z-index:-1;background:var(--hot);animation:float 8s ease-in-out infinite}
-.hero:before{top:4%;left:-100px}.hero:after{right:-100px;bottom:4%;background:var(--blue);animation-delay:-4s}
-.hero-inner{max-width:900px}
-.eyebrow{display:inline-block;color:var(--lime);border:1px solid #d7ff6255;border-radius:999px;padding:7px 13px;font-size:12px;font-weight:900;letter-spacing:.13em;text-transform:uppercase}
-h1{font-size:clamp(3rem,11vw,8.5rem);line-height:.86;letter-spacing:-.09em;margin:24px 0}
-h1 em{font-style:normal;color:var(--hot);text-shadow:0 0 40px #ff4fa344}
-.lead{color:#ded9ed;font-size:clamp(16px,2.3vw,21px);max-width:620px;margin:0 auto 25px;line-height:1.6}
-.horse-hero{font-size:clamp(90px,20vw,170px);display:block;filter:drop-shadow(0 20px 25px #0008);animation:bounce 2.3s ease-in-out infinite;cursor:pointer;user-select:none}
-.actions{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin:22px 0}
-.btn{border:0;border-radius:14px;padding:13px 18px;font-weight:900;transition:transform .15s,filter .15s}
-.btn:hover{transform:translateY(-3px);filter:brightness(1.1)}.primary{background:var(--lime);color:#161616}.secondary{background:#ffffff14;border:1px solid #ffffff25;color:white}
-.stats{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:24px}.stat{min-width:125px;padding:12px 16px;border-radius:15px;background:#0003;border:1px solid #ffffff15}.stat strong{display:block;font-size:22px}.stat small{color:var(--muted)}
-main{width:min(1100px,100%);margin:auto;padding:30px 16px 80px}
-.section-head{display:flex;justify-content:space-between;align-items:end;gap:15px;flex-wrap:wrap;margin:18px 0}.section-head h2{font-size:clamp(27px,5vw,42px);letter-spacing:-.05em;margin:0}.section-head p{color:var(--muted);margin:6px 0 0}
-.feed{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-.card{min-width:0;position:relative;overflow:hidden;border-radius:22px;background:var(--panel);border:1px solid #ffffff16;animation:appear .45s both}
-.card-image{height:clamp(150px,28vw,280px);display:grid;place-items:center;position:relative;overflow:hidden;background:linear-gradient(135deg,#39244d,#193d4b)}
-.card-image img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}.card:hover .card-image img{transform:scale(1.06)}
-.fallback{font-size:clamp(65px,12vw,115px);position:absolute;inset:0;display:grid;place-items:center}
-.tag{position:absolute;top:12px;left:12px;background:#101018d9;border:1px solid #ffffff2a;padding:6px 9px;border-radius:999px;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.07em}
-.card-body{padding:17px}.card h3{font-size:clamp(19px,3vw,27px);letter-spacing:-.04em;margin:0 0 8px}.card p{color:#c5c2d4;line-height:1.55;margin:0 0 14px}.card-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;color:var(--muted);font-size:12px}.like{background:#ffffff0b;border:1px solid #ffffff20;color:white;border-radius:999px;padding:7px 10px}
-.quote{margin:24px 0;padding:clamp(22px,5vw,42px);border-radius:22px;background:linear-gradient(120deg,#ff4fa31c,#76e5ff16);border:1px solid #ffffff18;text-align:center}.quote small{color:var(--lime);font-weight:900;letter-spacing:.12em}.quote blockquote{font-size:clamp(22px,4.6vw,40px);font-weight:900;letter-spacing:-.05em;margin:13px 0}.quote button{background:transparent;border:1px solid #ffffff30;color:white;border-radius:999px;padding:9px 13px}
-.sponsor{display:flex;align-items:center;gap:15px;padding:18px;border:1px dashed #ffffff30;border-radius:18px;color:var(--muted);margin:24px 0}.sponsor b{color:var(--hot)}.sponsor .adicon{font-size:38px}
-#loader{padding:38px 10px;text-align:center;color:var(--muted)}.spinner{display:inline-block;font-size:35px;animation:spin 2s linear infinite}
-footer{text-align:center;padding:35px 15px 55px;border-top:1px solid #ffffff15;color:var(--muted)}footer strong{color:var(--hot)}
-#toast{position:fixed;z-index:30;left:50%;bottom:22px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--lime);color:#171717;font-weight:900;padding:12px 17px;border-radius:13px;box-shadow:0 10px 40px #0008;transition:.25s;max-width:90vw;text-align:center}#toast.show{opacity:1;transform:translate(-50%,0)}
-#runner{position:fixed;z-index:20;left:-120px;bottom:8px;font-size:66px;display:none;filter:drop-shadow(0 5px 8px #0008);pointer-events:none}
-body.chaos{animation:hue 4s linear infinite}body.chaos .card{animation:wobble .7s infinite alternate}body.chaos .horse-hero{animation:bounce .35s infinite}
-@keyframes bounce{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-15px) rotate(4deg)}}
-@keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(35px,30px)}}
-@keyframes spin{to{transform:rotate(360deg)}}@keyframes appear{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-@keyframes wobble{from{transform:rotate(-.5deg)}to{transform:rotate(.5deg)}}@keyframes hue{to{filter:hue-rotate(360deg)}}
-@media(min-width:760px){.feed{grid-template-columns:repeat(3,minmax(0,1fr))}.card:nth-child(7n+2){grid-column:span 2}.card:nth-child(7n+2) .card-image{height:300px}}
-@media(max-width:520px){.feed{grid-template-columns:1fr}.hero{min-height:80vh}.topbar .pill{font-size:11px;padding:7px 9px}.card-image{height:230px}.sponsor{align-items:flex-start}}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
+    body { margin: 0; background: #111; color: white; font-family: Arial, sans-serif; }
+    .block { height: 500px; display: flex; justify-content: center; align-items: center; font-size: 2em; border-bottom: 1px solid #333; }
 </style>
 </head>
 <body>
-<header class="topbar"><div class="brand">ENDLOS<span>PFERD</span>.LOL</div><div style="display:flex;gap:8px;align-items:center"><span class="pill">🐴 Internet-Quatsch</span><button class="pill" id="chaosTop">CHAOS: AUS</button></div></header>
-<section class="hero" id="top">
- <div class="hero-inner">
-  <span class="eyebrow">Warnung: Diese Seite hat kein Ende</span>
-  <h1>DU SCROLLST.<br><em>ES HÖRT NIE AUF.</em></h1>
-  <p class="lead">Pferde. Memes. Fragwürdige Lebensweisheiten. Und noch mehr Pferde. Du könntest jetzt aufhören. Aber wirst du?</p>
-  <span class="horse-hero" id="bigHorse" title="Klick mich. Trau dich." role="button" tabindex="0">🐎</span>
-  <div class="actions"><button class="btn primary" id="startScroll">BRING MICH INS CHAOS ↓</button><button class="btn secondary" id="runHorse">PFERD LOSLASSEN 🏇</button></div>
-  <div class="stats"><div class="stat"><strong id="count">0</strong><small>Quatsch-Abschnitte</small></div><div class="stat"><strong id="distance">0 m</strong><small>virtuell gescrollt</small></div><div class="stat"><strong>∞</strong><small>Ende in Sicht? Nein.</small></div></div>
- </div>
-</section>
-<main id="feedStart">
- <div class="section-head"><div><h2>Der endlose Feed</h2><p>Jeder Scroll bringt neue, unnötig wichtige Inhalte.</p></div><button class="btn secondary" id="newBatch">MEHR QUATSCH +10</button></div>
- <div class="feed" id="feed"></div>
- <div class="quote"><small>WEISHEIT DES MOMENTS</small><blockquote id="quoteText">Wenn das Leben dir Heu gibt, frag dich, warum es kein WLAN gibt.</blockquote><button id="newQuote">Andere Weisheit würfeln ↻</button></div>
- <div class="sponsor"><div class="adicon">🧃</div><div><b>ANZEIGE, DIE NIEMAND BESTELLT HAT</b><br>Premium-Heu mit 300 % mehr Heu. Jetzt fast nicht kaufen.</div><button class="like" id="adButton">Nein.</button></div>
- <div class="section-head"><div><h2>Du bist noch hier?</h2><p>Respekt. Oder du hast den Ausgang nicht gefunden.</p></div></div>
- <div class="feed" id="feed2"></div>
- <div id="loader"><span class="spinner">🌀</span><p>Weitere Pferde werden aus dem Internet-Heu gezogen …</p></div>
-</main>
-<footer><p>Du bist bis hier gescrollt. Das ist zwischen dir und deinem Daumen.</p><p><strong>ENDLOSPFERD.LOL</strong> — 100 % unnötig, 0 % Ende.</p><button class="btn secondary" id="backTop">Zurück ganz nach oben ↑</button></footer>
-<div id="toast" role="status" aria-live="polite"></div><div id="runner">🐎💨</div>
 <script>
-const stories=[
- ["Das Pferd mit Steuerklasse 3","Es arbeitet nur vier Tage die Woche und wiehert freitags schon um 12:01 Uhr.","🐴","Büro-Pferd"],
- ["Breaking: Karotte verschwunden","Die Ermittler haben eine Spur aus orangefarbenen Krümeln gefunden. Der Hamster schweigt.","🥕","EILMELDUNG"],
- ["Der letzte Gehirnzell-Überlebende","Er hat den Gruppenchat verlassen. Er braucht jetzt Ruhe.","🧠","DOKU"],
- ["Pferd entdeckt WLAN","Seitdem steht es nur noch im Router-Raum und wiehert bei jedem Verbindungsabbruch.","📶","TECHNOLOGIE"],
- ["Finanz-Tipp vom Pony","Kauf niedrig, verkauf hoch. Oder investiere alles in Heu. Keine Anlageberatung.","💸","FINANZEN"],
- ["Die Ente kennt deine IP","Sie sagt nichts. Sie weiß zu viel. Quak.","🦆","VERSCHWÖRUNG"],
- ["Montag wurde abgesagt","Ein Pferd hat beim Kalender Widerspruch eingelegt. Dienstag prüft den Antrag.","📅","POLITIK"],
- ["Der Kühlschrank um 03:00 Uhr","Du wolltest nur schauen. Jetzt stehst du da mit Käse und existenziellen Fragen.","🧀","HORROR"],
- ["Pferd im Fitnessstudio","Tag 1: 4 Hufe trainiert. Tag 2: auf der Weide liegen geblieben.","🏋️","SPORT"],
- ["Wissenschaftler bestätigen","Wer „nur noch ein Video“ sagt, altert in Internet-Minuten.","🔬","WISSENSCHAFT"],
- ["Die Socke im Paralleluniversum","Alle verschwundenen Socken leben jetzt zusammen und gründen eine Band.","🧦","MYSTERIUM"],
- ["Keks mit Doktortitel","Er hat Krümel in Quantenphysik und bröselt trotzdem bei Druck.","🍪","BILDUNG"],
- ["Ein sehr verdächtiger Frosch","Er hat einen Hut. Mehr Beweise braucht die Jury nicht.","🐸","KRIMI"],
- ["Wetterbericht für Pferde","100 % Heuwahrscheinlichkeit. Gegen Abend vereinzelte Äpfel.","🌦️","WETTER"],
- ["Das WLAN hat Gefühle","Es bricht genau dann ab, wenn du sagst: „Das geht schnell.“","💔","BEZIEHUNG"],
- ["Pferd wird Influencer","Sein erster Post: „Heu guys.“ 14 Millionen Likes.","📸","PROMI"],
- ["Der müde Toaster","Er springt morgens auf, obwohl ihn niemand gefragt hat.","🍞","ALLTAG"],
- ["Der Mond ist aus Käse?","Wir haben nachgesehen. Der Mond hat uns blockiert.","🌕","WELTRAUM"],
- ["Gans gründet Security-Firma","Niemand kommt rein. Nicht mal die Mitarbeitenden.","🪿","BUSINESS"],
- ["Pony startet Podcast","Zwei Stunden wiehern. Platz 1 in allen Kategorien.","🎙️","KULTUR"]
-];
-const quotes=[
-"Wenn das Leben dir Heu gibt, frag dich, warum es kein WLAN gibt.",
-"Du bist nicht faul. Du bist im Energiesparmodus.",
-"Jeder Tag ist eine neue Chance, den Kühlschrank ohne Grund zu öffnen.",
-"Wer zuletzt lacht, hat den Witz wahrscheinlich erst jetzt verstanden.",
-"Manchmal muss man einfach loslassen. Wie die Fernbedienung in der Sofaritze.",
-"Sei wie ein Pferd: Wenn alles schiefgeht, tu so, als wäre es Absicht.",
-"Erfolg ist 1 % Inspiration und 99 % wo habe ich mein Handy hingelegt?",
-"Die Zukunft ist ungewiss. Aber irgendwo wartet bestimmt ein Snack.",
-"Wenn du nicht weiterweißt: Wiehern. Das löst erstaunlich wenige Probleme.",
-"Es gibt keine dummen Fragen. Nur sehr verwirrte Pferde."
-];
-const imageUrls=[
-"https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?auto=format&fit=crop&w=900&q=80",
-"https://images.unsplash.com/photo-1534307670263-3a2e1a1f1e4a?auto=format&fit=crop&w=900&q=80",
-"https://images.unsplash.com/photo-1516467508483-a7212febe31a?auto=format&fit=crop&w=900&q=80",
-"https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=900&q=80",
-"https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=900&q=80"
-];
-let total=0, likes=0, lastQuote=-1, loading=false, chaos=false, toastTimer;
-const feed=document.getElementById('feed'),feed2=document.getElementById('feed2');
-const toast=document.getElementById('toast');
-function say(message){toast.textContent=message;toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),2300)}
-function cardHTML(item,index){
- const [title,desc,emoji,tag]=item;
- const photo=(index%4===0||index%7===2)?imageUrls[(index/2|0)%imageUrls.length]:"";
- return '<article class="card"><div class="card-image" style="background:linear-gradient(135deg,hsl('+((index*47)%360)+' 48% 26%),hsl('+((index*47+70)%360)+' 55% 35%))">'+(photo?'<img loading="lazy" src="'+photo+'" alt="Zufälliges Tierfoto" onerror="this.style.display=\'none\'">':'')+'<span class="fallback">'+emoji+'</span><span class="tag">'+tag+'</span></div><div class="card-body"><h3>'+title+'</h3><p>'+desc+'</p><div class="card-foot"><span>QUATSCH-NR. '+(index+1)+'</span><button class="like" data-like>♥ Gefällt mir</button></div></div></article>';
+let nummer = 1;
+function neuerBlock() {
+    const div = document.createElement("div");
+    div.className = "block";
+    div.style.background = `hsl(${Math.random()*360},70%,35%)`;
+    div.textContent = "Block " + nummer++;
+    document.body.appendChild(div);
 }
-function addBatch(amount=10){
- const html=[];for(let i=0;i<amount;i++){const index=total++;const story=stories[index%stories.length];html.push(cardHTML(story,index))}
- const target=total%2?feed:feed2;target.insertAdjacentHTML('beforeend',html.join(''));
- document.getElementById('count').textContent=total;
-}
-document.addEventListener('click',e=>{
- const like=e.target.closest('[data-like]');if(like){likes++;like.textContent='♥ '+(likes>1?'Gefällt dir':'Gefällt mir');like.style.background='#ff4fa344';say(['Dein Like wurde dem Pferderat gemeldet.','Das Pferd hat kurz genickt.','Ein Algorithmus wiehert dankbar.'][likes%3]);}
+for(let i=0;i<20;i++){ neuerBlock(); }
+window.addEventListener("scroll", () => {
+    if(window.innerHeight + window.scrollY >= document.body.offsetHeight - 1000){
+        for(let i=0;i<10;i++){ neuerBlock(); }
+    }
 });
-document.getElementById('newBatch').addEventListener('click',()=>{addBatch(10);say('10 frische Portionen Quatsch geliefert.');});
-function newQuote(){let n;do{n=Math.floor(Math.random()*quotes.length)}while(n===lastQuote);lastQuote=n;document.getElementById('quoteText').textContent=quotes[n]}
-document.getElementById('newQuote').addEventListener('click',newQuote);
-document.getElementById('adButton').addEventListener('click',()=>say('Deine Ablehnung wurde in 17 Formularen gespeichert.'));
-function toggleChaos(){chaos=!chaos;document.body.classList.toggle('chaos',chaos);document.getElementById('chaosTop').textContent='CHAOS: '+(chaos?'AN':'AUS');say(chaos?'CHAOS-MODUS AKTIV. HALT DEIN HEU FEST.':'Chaos beendet. Die Pferde beruhigen sich.')}
-document.getElementById('chaosTop').addEventListener('click',toggleChaos);
-document.getElementById('bigHorse').addEventListener('click',()=>{say(['HÜÜÜ!','Das Pferd hat dich erkannt.','Du hast +1 Karotte erhalten.','Pferd sagt: Scroll weiter.'][Math.floor(Math.random()*4)]);document.getElementById('bigHorse').textContent=['🐎','🐴','🦄'][Math.floor(Math.random()*3)]});
-document.getElementById('bigHorse').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();e.currentTarget.click()}});
-document.getElementById('startScroll').addEventListener('click',()=>document.getElementById('feedStart').scrollIntoView({behavior:'smooth'}));
-document.getElementById('backTop').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
-let running=false;
-document.getElementById('runHorse').addEventListener('click',()=>{
- if(running)return;running=true;const horse=document.getElementById('runner');horse.style.display='block';horse.style.left='-120px';let x=-120;const step=()=>{x+=Math.max(5,window.innerWidth/90);horse.style.left=x+'px';if(x<window.innerWidth+100)requestAnimationFrame(step);else{horse.style.display='none';running=false;say('Das Pferd ist jetzt in einem anderen Tab. Vermutlich.')}};requestAnimationFrame(step);
-});
-let lastScroll=0;
-window.addEventListener('scroll',()=>{const max=document.documentElement.scrollHeight-window.innerHeight;document.getElementById('distance').textContent=Math.max(0,Math.round(window.scrollY/100))+' m';if(window.scrollY>lastScroll+800&&Math.random()<.16)say(['Du scrollst schneller als ein Pony auf Espresso.','Das Ende hat sich krankgemeldet.','Noch ein Abschnitt? Natürlich.','Dein Daumen verdient Urlaub.'][Math.floor(Math.random()*4)]);lastScroll=window.scrollY},{passive:true});
-addBatch(12);addBatch(8);
-const sentinel=document.getElementById('loader');
-if('IntersectionObserver'in window){const observer=new IntersectionObserver(entries=>{if(entries.some(e=>e.isIntersecting)&&!loading){loading=true;setTimeout(()=>{addBatch(10);loading=false},350)}},{rootMargin:'700px'});observer.observe(sentinel)}else{window.addEventListener('scroll',()=>{if(!loading&&window.innerHeight+window.scrollY>document.documentElement.scrollHeight-900){loading=true;addBatch(10);loading=false}})}
 </script>
 </body>
 </html>
